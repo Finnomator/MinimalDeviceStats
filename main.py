@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from fastapi.responses import ORJSONResponse
-from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 
 import system_info
@@ -21,6 +20,3 @@ app.add_middleware(
 @app.get("/sysinfo")
 def system_status():
     return sys_reporter.get_data()
-
-
-app.mount("/", StaticFiles(directory="static", html=True), name="static")
