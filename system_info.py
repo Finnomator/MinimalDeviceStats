@@ -18,10 +18,10 @@ class SystemInfoReporter:
 
     @staticmethod
     def get_cpu_temperature():
-        with open('/sys/class/thermal/thermal_zone0/temp', 'r') as file:
-            temp_str = file.read().strip()
-            temp = int(temp_str) / 1000.0
-            return temp
+        with open('/sys/class/thermal/thermal_zone0/temp', 'r') as f:
+            temp_str = f.read().strip()
+        temp = int(temp_str) / 1000
+        return temp
 
     @staticmethod
     def get_memory_usage():
@@ -52,7 +52,7 @@ class SystemInfoReporter:
         self._run = False
         self._thread.join()
 
-    def get_data(self):
+    def get_data(self) -> SystemInfoReport:
         return self._current_data
 
     def _get_data(self):

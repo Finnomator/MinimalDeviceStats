@@ -18,5 +18,5 @@ app.add_middleware(
 
 
 @app.get("/sysinfo")
-def system_status():
+def system_status() -> system_info.SystemInfoReport:
     return sys_reporter.get_data()
